@@ -26,4 +26,4 @@ after that, you must run the test script to see the result:
 * For best result, please be quite for 3 seconds after running test script.
 In this period, the VAD algorithm will detect background noise in order to rubustness in noisy environments.
 After that, the sound wave plots will be depicted and the VAD system is ready for testing. 
-The short time window (lower plot) will be red if it is a voice part and blue if it is silent.
+The short time window (lower plot) will be red if it is voice part and blue if it is silent.
