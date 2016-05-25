@@ -8,7 +8,9 @@ prerequests:
 In order to run examples, you need to install following python libraries:
 
 numpy and scipy
+
 matplotlib
+
 [pyaudio](http://people.csail.mit.edu/hubert/pyaudio/)
 
 testing:
