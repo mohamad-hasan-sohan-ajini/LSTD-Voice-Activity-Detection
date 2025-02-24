@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import scipy
+from scipy.fft import fft
 
 
 class LSTD_vad(object):
@@ -29,11 +30,11 @@ class LSTD_vad(object):
         if(noise_signal.shape[0] < self._spw + self._sps * self._N):
             raise Exception('low information about noise')
         signal_len = noise_signal.shape[0]
-        noise_spec = scipy.fft(noise_signal[:self._spw], self._NFFT)
+        noise_spec = fft(noise_signal[:self._spw], self._NFFT)
         for i in range(1, int((signal_len - self._spw) / self._sps)):
             start = self._sps * i
             end = start + self._spw
-            self._last_specs.append(np.abs(scipy.fft(noise_signal[start:end], self._NFFT)) ** 2)
+            self._last_specs.append(np.abs(fft(noise_signal[start:end], self._NFFT)) ** 2)
             noise_spec += self._last_specs[-1]
         noise_spec /= int((signal_len - self._spw) / self._sps)
         self._last_specs = self._last_specs[-self._N:]
@@ -48,7 +49,7 @@ class LSTD_vad(object):
         if(frame.shape[0] != self._spw):
             print('exception')
             raise Exception('samples not expected')
-        self._last_specs.append(np.abs(scipy.fft(frame, self._NFFT)) ** 2)
+        self._last_specs.append(np.abs(fft(frame, self._NFFT)) ** 2)
         self._last_specs = self._last_specs[-self._N:]
         self._lste = np.array(np.array(self._last_specs).max(axis=0), float)
 
