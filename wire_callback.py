@@ -13,7 +13,7 @@ import socket
 WIDTH = 2
 CHANNELS = 1
 RATE = 48000
-CHUNK = RATE / 100
+CHUNK = int(RATE / 100)
 
 p = pyaudio.PyAudio()
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
